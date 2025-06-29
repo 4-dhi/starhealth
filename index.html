@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Star Health Insurance</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #e6f3fa;
+        line-height: 1.6;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+
+      header {
+        background: linear-gradient(90deg, #007bff, #00c4b4);
+        color: white;
+        padding: 2rem 0;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .header-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
+      }
+
+      .header-text h1 {
+        margin: 0;
+        font-size: clamp(1.8rem, 4vw, 2.5rem);
+      }
+
+      .header-text p {
+        margin: 0.5rem 0 0 0;
+        font-size: clamp(0.9rem, 2vw, 1.1rem);
+        opacity: 0.9;
+      }
+
+      .header-logo img {
+        max-width: 100%;
+        height: auto;
+        max-height: 120px;
+      }
+
+      nav {
+        background-color: #004aad;
+        padding: 1rem 0;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .nav-container {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      nav a {
+        color: white;
+        margin: 0.5rem 1rem;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s;
+        padding: 0.5rem;
+        border-radius: 4px;
+        white-space: nowrap;
+      }
+
+      nav a:hover {
+        color: #00c4b4;
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .hero {
+        text-align: center;
+        padding: 4rem 1rem;
+        background-color: white;
+        animation: fadeIn 1s ease-in;
+      }
+
+      .hero h1 {
+        color: #004aad;
+        font-size: clamp(1.5rem, 4vw, 2rem);
+        margin-bottom: 1rem;
+      }
+
+      .hero p {
+        color: #333;
+        font-size: clamp(1rem, 2.5vw, 1.2rem);
+        margin-bottom: 2rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero button {
+        background-color: #00c4b4;
+        color: white;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: clamp(1rem, 2vw, 1.1rem);
+        transition: transform 0.2s, background-color 0.3s;
+        min-width: 180px;
+      }
+
+      .hero button:hover {
+        background-color: #007bff;
+        transform: scale(1.05);
+      }
+
+      .section {
+        padding: 3rem 1rem;
+        text-align: center;
+        background-color: #f9f9f9;
+      }
+
+      .section h2 {
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        color: #004aad;
+        margin-bottom: 2rem;
+      }
+
+      .plans-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .plan-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+      }
+
+      .plan-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .plan-card h3 {
+        color: #004aad;
+        margin-bottom: 1rem;
+        font-size: 1.3rem;
+      }
+
+      .form-container {
+        background-color: #e6f3fa;
+        padding: 2rem;
+        max-width: 600px;
+        margin: 0 auto;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1rem;
+      }
+
+      input,
+      textarea {
+        width: 100%;
+        padding: 1rem;
+        margin: 0.5rem 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1rem;
+      }
+
+      button[type="submit"] {
+        background-color: #00c4b4;
+        color: white;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        width: 100%;
+        font-size: 1rem;
+        margin-top: 1rem;
+      }
+
+      button[type="submit"]:hover {
+        background-color: #007bff;
+      }
+
+      .testimonials {
+        background-color: #e6f3fa;
+        padding: 3rem 1rem;
+      }
+
+      .testimonials-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+
+      .testimonial {
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+      }
+
+      .testimonial:hover {
+        transform: translateY(-3px);
+      }
+
+      .faq {
+        padding: 3rem 1rem;
+        background-color: white;
+      }
+
+      .faq-container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .faq-item {
+        margin: 1rem 0;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .faq-question {
+        background-color: #007bff;
+        color: white;
+        padding: 1.5rem;
+        cursor: pointer;
+        border: none;
+        width: 100%;
+        text-align: left;
+        font-size: 1rem;
+        font-weight: 600;
+        transition: background-color 0.3s;
+      }
+
+      .faq-question:hover {
+        background-color: #0056b3;
+      }
+
+      .faq-answer {
+        display: none;
+        padding: 1.5rem;
+        background-color: #f8f9fa;
+        border-top: 1px solid #dee2e6;
+      }
+
+      .contact-info {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        max-width: 800px;
+        margin: 2rem auto 0;
+        text-align: left;
+      }
+
+      .contact-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        text-align: center;
+      }
+
+      footer {
+        background-color: #004aad;
+        color: white;
+        text-align: center;
+        padding: 2rem 1rem;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Mobile-first responsive design */
+      @media (max-width: 768px) {
+        .header-content {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .header-logo {
+          order: -1;
+        }
+
+        .nav-container {
+          justify-content: center;
+        }
+
+        nav a {
+          margin: 0.25rem 0.5rem;
+          font-size: 0.9rem;
+        }
+
+        .hero {
+          padding: 2rem 1rem;
+        }
+
+        .section {
+          padding: 2rem 1rem;
+        }
+
+        .form-container {
+          padding: 1.5rem;
+        }
+
+        .plans-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .testimonials-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .contact-info {
+          grid-template-columns: 1fr;
+          text-align: center;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .container {
+          padding: 0 0.5rem;
+        }
+
+        .hero button {
+          width: 100%;
+          max-width: 280px;
+        }
+
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+
+        nav a {
+          margin: 0.25rem;
+          padding: 0.5rem 0.75rem;
+          font-size: 0.85rem;
+        }
+
+        .testimonial,
+        .plan-card,
+        .contact-card {
+          padding: 1.5rem;
+        }
+      }
+
+      /* Large screen optimizations */
+      @media (min-width: 1200px) {
+        .plans-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        .testimonials-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <div class="header-text">
+            <h1>Star Health Insurance</h1>
+            <p>Your Trusted Partner for Affordable Health Plans</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <nav>
+      <div class="container">
+        <div class="nav-container">
+          <a href="#home">Home</a>
+          <a href="#plans">Plans</a>
+          <a href="#quote">Get a Quote</a>
+          <a href="#testimonials">Testimonials</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </nav>
+
+    <div class="hero" id="home">
+      <div class="container">
+        <h1>Protect Your Health Today</h1>
+        <p>
+          Get personalized health insurance plans tailored to your needs and
+          budget. Your health is our priority.
+        </p>
+        <button onclick="location.href='#quote'">Request a Quote</button>
+      </div>
+    </div>
+
+    <div class="section" id="plans">
+      <div class="container">
+        <h2>Our Insurance Plans</h2>
+        <p>
+          Choose from our comprehensive plans designed for every need and
+          budget.
+        </p>
+        <div class="plans-grid">
+          <div class="plan-card">
+            <h3>Family Plan</h3>
+            <p>
+              Comprehensive coverage for your entire family including hospital
+              stays, doctor visits, prescriptions, and preventive care with
+              wellness programs.
+            </p>
+          </div>
+          <div class="plan-card">
+            <h3>Individual Plan</h3>
+            <p>
+              Affordable coverage designed for single adults with flexible
+              options, preventive care, and emergency medical services.
+            </p>
+          </div>
+          <div class="plan-card">
+            <h3>Senior Plan</h3>
+            <p>
+              Specialized care for seniors including wellness programs, chronic
+              condition management, and comprehensive health monitoring.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="quote">
+      <div class="container">
+        <h2>Get a Free Quote</h2>
+        <div class="form-container">
+          <form
+            id="quote-form"
+            action="http://localhost:8080/api/submit-form-encoded"
+            method="POST"
+          >
+            <div class="form-row">
+              <input type="text" name="name" placeholder="Full Name" required />
+              <input
+                type="email"
+                name="email"
+                placeholder="Email Address"
+                required
+              />
+            </div>
+            <input
+              type="tel"
+              name="phone"
+              placeholder="Phone Number"
+              required
+            />
+            <textarea
+              name="needs"
+              placeholder="Tell us about your insurance needs and any specific requirements"
+              rows="4"
+            ></textarea>
+            <button type="submit">Get My Free Quote</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="testimonials" id="testimonials">
+      <div class="container">
+        <h2>What Our Clients Say</h2>
+        <div class="testimonials-grid">
+          <div class="testimonial">
+            <p>
+              "Star Health Insurance made finding a plan so easy! The coverage
+              is comprehensive and the pricing is very reasonable. Highly
+              recommend!"
+            </p>
+            <p><strong>- Sarah M.</strong></p>
+          </div>
+          <div class="testimonial">
+            <p>
+              "The team was super helpful in customizing a plan for my family.
+              Great customer service and quick claim processing."
+            </p>
+            <p><strong>- John D.</strong></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="faq" id="faq">
+      <div class="container">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-container">
+          <div class="faq-item">
+            <button class="faq-question">
+              What does Star Health Insurance cover?
+            </button>
+            <div class="faq-answer">
+              Our plans cover hospital stays, doctor visits, prescriptions,
+              preventive care, emergency services, and more, depending on the
+              specific plan you choose. Each plan is designed to provide
+              comprehensive healthcare coverage.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">How do I get a quote?</button>
+            <div class="faq-answer">
+              Simply fill out the form above with your basic information and
+              healthcare needs. We'll contact you with a personalized quote
+              within 24 hours, tailored to your specific requirements and
+              budget.
+            </div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-question">What is the claims process?</button>
+            <div class="faq-answer">
+              Our claims process is simple and efficient. You can file claims
+              online through our portal, via phone, or through our mobile app.
+              Most claims are processed within 3-5 business days.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="contact">
+      <div class="container">
+        <h2>Contact Us</h2>
+        <div class="contact-info">
+          <div class="contact-card">
+            <h3>Email Us</h3>
+            <p>info@starhealthinsurance.com</p>
+          </div>
+          <div class="contact-card">
+            <h3>Call Us</h3>
+            <p>+91 9495491109</p>
+          </div>
+          <div class="contact-card">
+            <h3>Visit Our Office</h3>
+            <p>Star Health Insurance<br />Kozhikode</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="container">
+        <p>
+          © 2025 Star Health Insurance. All rights reserved. | Privacy Policy |
+          Terms of Service
+        </p>
+      </div>
+    </footer>
+
+    <script>
+      // Smooth scrolling for navigation
+      document.querySelectorAll("nav a").forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const section = document.querySelector(this.getAttribute("href"));
+          if (section) {
+            section.scrollIntoView({ behavior: "smooth" });
+          }
+        });
+      });
+
+      // FAQ accordion
+      document.querySelectorAll(".faq-question").forEach((question) => {
+        question.addEventListener("click", () => {
+          const answer = question.nextElementSibling;
+          const isOpen = answer.style.display === "block";
+
+          // Close all other FAQ items
+          document.querySelectorAll(".faq-answer").forEach((ans) => {
+            ans.style.display = "none";
+          });
+
+          // Toggle current FAQ item
+          answer.style.display = isOpen ? "none" : "block";
+        });
+      });
+
+      // Form submission with better error handling
+      document
+        .getElementById("quote-form")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const form = e.target;
+          const submitBtn = form.querySelector('button[type="submit"]');
+          const originalText = submitBtn.textContent;
+
+          try {
+            submitBtn.textContent = "Submitting...";
+            submitBtn.disabled = true;
+
+            const response = await fetch(form.action, {
+              method: form.method,
+              body: new FormData(form),
+            });
+
+            if (response.ok) {
+              alert(
+                "Thank you! Your quote request has been submitted successfully. We'll contact you within 24 hours."
+              );
+              form.reset();
+            } else {
+              throw new Error("Network response was not ok");
+            }
+          } catch (error) {
+            alert(
+              "Oops! Something went wrong. Please try again or contact us directly."
+            );
+            console.error("Form submission error:", error);
+          } finally {
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+          }
+        });
+
+      // Add loading animation for images
+      document.addEventListener("DOMContentLoaded", function () {
+        const images = document.querySelectorAll("img");
+        images.forEach((img) => {
+          img.addEventListener("load", function () {
+            this.style.opacity = "1";
+          });
+          img.style.opacity = "0";
+          img.style.transition = "opacity 0.3s ease";
+        });
+      });
+    </script>
+  </body>
+</html>
